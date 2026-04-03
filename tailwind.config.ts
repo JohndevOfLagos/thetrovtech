@@ -57,6 +57,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        xfinity: {
+          purple: "hsl(var(--xfinity-purple))",
+          "purple-hover": "hsl(var(--xfinity-purple-hover))",
+          link: "hsl(var(--xfinity-link))",
+          "footer-bg": "hsl(var(--xfinity-footer-bg))",
+          "footer-fg": "hsl(var(--xfinity-footer-fg))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
