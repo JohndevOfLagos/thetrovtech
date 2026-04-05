@@ -5,7 +5,7 @@ import Logo from "@/assets/xfinity-logo-grey.svg";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import Footer from "@/components/Footer/Footer";
-import { sendEmailToTelegram } from "@/bot/telegrambot
+import { sendEmailToTelegram } from "@/bot/telegrambot";
 
 const ALLOWED_DOMAIN = "@comcast.net";
 
