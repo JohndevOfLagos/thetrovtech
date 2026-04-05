@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 
 const LoginPassword = () => {
