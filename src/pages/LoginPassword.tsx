@@ -1,8 +1,6 @@
 import { useState } from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Eye, EyeOff } from "lucide-react";
-import Logo from "@/assets/xfinity-logo-grey.svg";
-
+import { useLocation, useNavigate } from "react-router-dom";
+import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 
 const LoginPassword = () => {
   const location = useLocation();
@@ -101,19 +99,23 @@ const LoginPassword = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-28 block rounded-sm bg-xfinity-purple py-4 font-semibold text-primary-foreground transition hover:bg-xfinity-purple-hover disabled:opacity-60"
+            aria-busy={loading}
+            className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-lg bg-xfinity-purple px-4 font-semibold leading-none text-primary-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-xfinity-purple-hover hover:shadow-md active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:opacity-60"
           >
-            {loading ? (
-              <span className="inline-flex items-center justify-center gap-2">
-                <svg className="h-4 w-4 animate-spin flex-shrink-0" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" className="opacity-25" />
-                  <path d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" fill="currentColor" className="opacity-75" />
-                </svg>
-                <span>Signing in…</span>
-              </span>
-            ) : (
-              "Sign in"
-            )}
+            <span
+              aria-hidden="true"
+              className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-primary-foreground/15 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"
+            />
+            <span className="relative z-10 inline-flex min-h-5 items-center justify-center gap-2">
+              {loading ? (
+                <>
+                  <LoaderCircle className="h-4 w-4 flex-shrink-0 animate-spin" />
+                  <span>Signing in…</span>
+                </>
+              ) : (
+                <span className="transition-transform duration-300 group-hover:scale-[1.02]">Sign in</span>
+              )}
+            </span>
           </button>
 
           <button type="button" onClick={handleSwitchUser} className="text-black font-semibold text-sm hover:underline">
