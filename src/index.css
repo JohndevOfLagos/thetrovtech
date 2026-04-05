@@ -100,5 +100,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: "Lexend", sans-serif;
+    font-optical-sizing: auto;
   }
 }

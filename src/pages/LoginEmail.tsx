@@ -1,6 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import heroImage from "@/assets/xfinity-hero.jpg";
+import heroImage from "@/assets/xfinity-banner.png";
+import Logo from "@/assets/xfinity-logo-grey.svg";
+import { Link } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
+import Footer from "@/components/Footer/Footer";
 
 const LoginEmail = () => {
   const [email, setEmail] = useState("");
@@ -11,7 +15,7 @@ const LoginEmail = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) {
-      setError("Please enter your Xfinity ID.");
+      setError("Please enter your Xfinity ID to sign in.");
       return;
     }
     setError("");
@@ -23,89 +27,118 @@ const LoginEmail = () => {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-background">
+<main className="h-screen overflow-y-auto bg-background">
       {/* Split area */}
-      <div className="flex flex-1 flex-col md:flex-row">
-        {/* LEFT – Form */}
-        <div className="flex flex-1 items-center justify-center px-6 py-12 md:px-16">
-          <div className="w-full max-w-md space-y-8">
-            {/* Logo text */}
-            <span className="text-2xl font-bold tracking-tight text-foreground">xfinity</span>
+  <section className="h-[94vh] flex flex-col md:flex-row">
+   {/* LEFT */}
+    <div className="flex flex-1 items-center justify-center px-6 py-12 md:px-16">
+      <div className="w-full translate-y-[16px] max-w-xl space-y-6">
+    
+    {/* Logo */}
+    <img
+      src={Logo}
+      alt=""
+      className="translate-y-[6px]"
+      width={70}
+    />
 
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold text-foreground">Sign in with your Xfinity&nbsp;ID</h1>
-              <p className="text-muted-foreground">Enter your Xfinity&nbsp;ID</p>
-            </div>
+    {/* Heading */}
+    <div className="space-y-2 translate-y-[20px]">
+      <h1 className="text-3xl font-bold text-foreground leading-tight">
+        Sign in with your Xfinity&nbsp;ID
+      </h1>
+    </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <input
-                  type="text"
-                  placeholder="Email, mobile, or username"
-                  value={email}
-                  onChange={(e) => { setEmail(e.target.value); setError(""); }}
-                  className="w-full rounded-lg border border-border bg-background px-4 py-3 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                />
-                {error && <p className="mt-1 text-sm text-destructive">{error}</p>}
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="w-full rounded-lg bg-xfinity-purple py-3 font-semibold text-primary-foreground transition hover:bg-xfinity-purple-hover disabled:opacity-60"
-              >
-                {loading ? (
-                  <span className="inline-flex items-center gap-2">
-                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-                    </svg>
-                    Loading…
-                  </span>
-                ) : (
-                  "Let's go"
-                )}
-              </button>
-            </form>
-
-            <p className="text-xs text-muted-foreground">
-              By signing in, you agree to our{" "}
-              <a href="#" className="text-xfinity-link underline">Terms of Service</a> and{" "}
-              <a href="#" className="text-xfinity-link underline">Privacy Policy</a>.
-            </p>
-
-            <div className="space-y-2 text-sm">
-              <a href="#" className="block text-xfinity-link hover:underline">View exclusive offers</a>
-              <a href="#" className="block text-xfinity-link hover:underline">Find your Xfinity ID</a>
-              <a href="#" className="block text-xfinity-link hover:underline">Create new Xfinity ID</a>
-            </div>
-          </div>
-        </div>
-
-        {/* RIGHT – Image (hidden on mobile) */}
-        <div className="hidden md:block md:w-[60%] relative">
-          <img
-            src={heroImage}
-            alt="Family enjoying Xfinity entertainment"
-            className="absolute inset-0 h-full w-full object-cover"
-            width={960}
-            height={1080}
-          />
-          <div className="absolute inset-0 bg-foreground/10" />
-        </div>
+    {/* Form */}
+    <form onSubmit={handleSubmit} className="space-y-4 pt-3">
+      <div>
+        <input
+          type="text"
+          placeholder="Email, mobile, or username"
+          value={email}
+          onChange={(e) => {
+            setEmail(e.target.value);
+            setError("");
+          }}
+          className="w-full rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+        />
+        {error && (
+          <p className="mt-1 text-xs text-destructive">{error}</p>
+        )}
       </div>
 
-      {/* Footer – only on page 1, below split */}
-      <footer className="border-t border-border bg-xfinity-footer-bg px-6 py-4">
-        <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-x-6 gap-y-2 text-xs text-xfinity-footer-fg">
-          <span>© 2026 Comcast</span>
-          <a href="#" className="hover:underline">Web Terms Of Service</a>
-          <a href="#" className="hover:underline">Privacy Policy</a>
-          <a href="#" className="hover:underline">Cookie Preferences</a>
-          <a href="#" className="hover:underline">Ad Choices</a>
-          <a href="#" className="hover:underline">Accessibility</a>
-        </div>
-      </footer>
+           <p className="text-sm text-neutral-900 leading-relaxed">
+        By signing in, you agree to our{" "}
+        <Link to="#" className="text-xfinity-purple underline">
+          Terms of Service
+        </Link>{" "}
+        and{" "}
+        <Link to="#" className="text-xfinity-purple underline">
+          Privacy Policy
+        </Link>.
+      </p>
+
+      <button
+        type="submit"
+        disabled={loading}
+        className=" translate-y-[16px] w-28 rounded-sm bg-xfinity-purple py-4 font-semibold text-primary-foreground transition hover:bg-xfinity-purple-hover disabled:opacity-60"
+      >
+        {loading ? "Loading…" : "Let's go"}
+      </button>
+    </form>
+
+    {/* Links */}
+    <div className="pt-6 border-neutral-200">
+      <div className="flex flex-col text-md gap-1">
+        
+        <Link
+          to="#"
+          className="flex items-center justify-between w-full px-4 py-3 text-black hover:bg-neutral-100 border-b border-neutral-200"
+        >
+          <span>New to Xfinity? View exclusive offers near you</span>
+          <ChevronRight className="text-neutral-500" />
+        </Link>
+
+        <Link
+          to="#"
+          className="flex items-center justify-between w-full px-4 py-3 text-black hover:bg-neutral-100 border-b border-neutral-200"
+        >
+          <span>Find your Xfinity ID</span>
+          <ChevronRight className="text-neutral-500" />
+        </Link>
+
+        <Link
+          to="#"
+          className="flex items-center justify-between w-full px-4 py-3 text-black hover:bg-neutral-100"
+        >
+          <span>Create a new Xfinity ID</span>
+          <ChevronRight className="text-neutral-500" />
+        </Link>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+         {/* RIGHT */}
+<Link
+  to=""
+  className="hidden md:block md:w-1/2 relative border-l-2 border-transparent active:border-xfinity-purple-hover transition"
+>      <img
+        src={heroImage}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+    </Link>
+      </section>
+
+        {/* FOOTER (comes after scroll) */}
+  <footer className="bg-white">
+    <Footer />
+  </footer>
+
+  
     </main>
   );
 };

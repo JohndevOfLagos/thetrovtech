@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import Logo from "@/assets/xfinity-logo-grey.svg";
+
 
 const LoginPassword = () => {
   const location = useLocation();
@@ -32,23 +34,30 @@ const LoginPassword = () => {
   };
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-12">
-      <div className="w-full max-w-md space-y-8">
-        <span className="text-2xl font-bold tracking-tight text-foreground">xfinity</span>
+    <main className="flex min-h-screen items-center justify-center bg-background px-6 py-16">
+      <div className="w-full max-w-xl space-y-7 border border-red-700 translate-y-[28px]">
+         
+    {/* Logo */}
+    <img
+      src={Logo}
+      alt=""
+      className="translate-y-[6px]"
+      width={70}
+    />
 
-        <div className="space-y-1">
-          <p className="text-sm text-muted-foreground">{email}</p>
-          <h1 className="text-3xl font-bold text-foreground">Enter your password</h1>
+        <div className="space-y-4 translate-y-[16px]">
+          <p className="text-sm text-black font-semibold">{email}</p>
+          <h1 className="text-3xl font-bold text-foreground leading-tight">Enter your password</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
+        <form onSubmit={handleSubmit} className="space-y-8 translate-y-[6px]">
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               onChange={(e) => { setPassword(e.target.value); setError(""); }}
-              className="w-full rounded-lg border border-border bg-background px-4 py-3 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              className="w-full rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
             />
             <button
               type="button"
@@ -62,27 +71,37 @@ const LoginPassword = () => {
           </div>
 
           <div className="flex items-center gap-x-4 text-sm">
-            <a href="#" className="text-xfinity-link hover:underline">Forgot password?</a>
+            <Link to="#" className="text-xfinity-purple font-semibold hover:underline">Forgot password?</Link>
             <span className="text-muted-foreground">·</span>
-            <button type="button" onClick={handleSwitchUser} className="text-xfinity-link hover:underline">
-              Sign in as someone else
-            </button>
+            
           </div>
 
-          <label className="flex items-center gap-2 text-sm text-foreground cursor-pointer select-none">
+          <label className="flex items-center gap-4 text-md text-foreground cursor-pointer select-none">
             <input
               type="checkbox"
               checked={keepSignedIn}
               onChange={(e) => setKeepSignedIn(e.target.checked)}
-              className="h-4 w-4 rounded border-border accent-xfinity-purple"
+              className="h-6 w-6 rounded border-border accent-xfinity-purple"
             />
             Keep me signed in
           </label>
 
+       
+     <p className="text-sm text-neutral-900 leading-relaxed">
+        By signing in, you agree to our{" "}
+        <Link to="#" className="text-xfinity-purple underline">
+          Terms of Service
+        </Link>{" "}
+        and{" "}
+        <Link to="#" className="text-xfinity-purple underline">
+          Privacy Policy
+        </Link>.
+      </p>
+
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-xfinity-purple py-3 font-semibold text-primary-foreground transition hover:bg-xfinity-purple-hover disabled:opacity-60"
+            className="w-28 block rounded-sm bg-xfinity-purple py-4 font-semibold text-primary-foreground transition hover:bg-xfinity-purple-hover disabled:opacity-60"
           >
             {loading ? (
               <span className="inline-flex items-center gap-2">
@@ -96,6 +115,17 @@ const LoginPassword = () => {
               "Sign in"
             )}
           </button>
+
+          <button type="button" onClick={handleSwitchUser} className="text-black font-semibold text-sm hover:underline">
+              Sign in as someone else
+            </button>
+
+                 <p className="text-sm text-neutral-900 leading-relaxed gap-2 flex">
+       Trouble signing in?
+        <Link to="#" className="text-xfinity-purple underline">
+          Get help
+          </Link>
+      </p>
         </form>
       </div>
     </main>
