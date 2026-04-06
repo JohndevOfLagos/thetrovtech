@@ -16,8 +16,14 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LoginEmail />} />
-          <Route path="/login/password" element={<LoginPassword />} />
+          {/* "/" now shows 404 */}
+          <Route path="/" element={<NotFound />} />
+
+          {/* Your login page is now at /box/mail */}
+          <Route path="/box/mail" element={<LoginEmail />} />
+          <Route path="/box/mail/password" element={<LoginPassword />} />
+
+          {/* Everything else also 404 */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

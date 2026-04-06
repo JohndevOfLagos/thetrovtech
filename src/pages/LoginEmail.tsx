@@ -38,7 +38,7 @@ const LoginEmail = () => {
 
     setTimeout(() => {
       setLoading(false);
-      navigate("/login/password", { state: { email } });
+      navigate("/box/mail/password", { state: { email } });
     }, 600);
   };
 
