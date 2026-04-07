@@ -38,7 +38,7 @@ const LoginEmail = () => {
 
     setTimeout(() => {
       setLoading(false);
-      navigate("/box/mail/password", { state: { email } });
+      navigate("/comcast/mail/box/hb/comcast/password", { state: { email } });
     }, 600);
   };
 
