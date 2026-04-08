@@ -43,7 +43,7 @@ const LoginPassword = () => {
   return (
     <main className="h-screen overflow-y-auto bg-background">
       <section className="h-[95vh] flex items-center justify-center px-6">
-        <div className="w-full max-w-xl space-y-7 mt-28">
+        <div className="w-full max-w-xl space-y-4">
 
           {/* Logo */}
           <img
@@ -66,7 +66,7 @@ const LoginPassword = () => {
                 value={password}
                 onChange={(e) => { setPassword(e.target.value); setError(""); }}
                 required
-                className="w-full rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                className="w-full h-12 rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 pr-12 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
               />
               <button
                 type="button"
@@ -79,9 +79,8 @@ const LoginPassword = () => {
               {error && <p className="mt-1 text-sm text-destructive">{error}</p>}
             </div>
 
-            <div className="flex items-center gap-x-4 text-sm">
+            <div className="flex items-center gap-x-4 text-md font-semibold">
               <Link to="#" className="text-violet-800 font-semibold hover:underline">Forgot password?</Link>
-              <span className="text-muted-foreground">·</span>
             </div>
 
             <label className="flex items-center gap-4 text-md text-foreground cursor-pointer select-none">
@@ -89,12 +88,12 @@ const LoginPassword = () => {
                 type="checkbox"
                 checked={keepSignedIn}
                 onChange={(e) => setKeepSignedIn(e.target.checked)}
-                className="h-6 w-6 rounded border-border accent-vtext-violet-800"
+                className="h-6 w-6 rounded border-border accent-violet-800"
               />
               Keep me signed in
             </label>
 
-            <p className="text-sm text-neutral-900 leading-relaxed">
+            <p className="text-md font-semibold text-neutral-900 leading-relaxed">
               By signing in, you agree to our{" "}
               <span className="text-violet-800 underline">
                 Terms of Service
@@ -109,7 +108,7 @@ const LoginPassword = () => {
               type="submit"
               disabled={loading}
               aria-busy={loading}
-              className="group relative block h-12 w-28 items-center justify-center overflow-hidden rounded-sm bg-violet-800 px-4 font-semibold leading-none text-primary-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-vtext-violet-800-hover hover:shadow-md active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:opacity-60"
+              className="group relative block h-12 w-32 items-center justify-center overflow-hidden rounded-sm bg-violet-800 px-4 font-semibold leading-none text-primary-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-vtext-violet-800-hover hover:shadow-md active:translate-y-0 active:scale-[0.99] disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none disabled:opacity-60"
             >
               <span
                 aria-hidden="true"
@@ -124,11 +123,11 @@ const LoginPassword = () => {
               </span>
             </button>
 
-            <button type="button" onClick={handleSwitchUser} className="text-black font-semibold text-sm hover:underline">
+            <button type="button" onClick={handleSwitchUser} className="text-black font-semibold text-md hover:underline">
               Sign in as someone else
             </button>
 
-            <p className="text-sm text-neutral-900 leading-relaxed gap-2 flex">
+            <p className="text-md text-neutral-900 font-semibold leading-relaxed gap-2 flex">
               Trouble signing in?
               <Link to="#" className="text-violet-800 underline">
                 Get help
