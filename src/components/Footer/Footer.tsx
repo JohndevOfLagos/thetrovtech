@@ -82,7 +82,7 @@ const Footer = () => {
       </div>
 
       <div className="mx-auto flex max-w-7xl justify-center pb-8 text-xs text-neutral-400">
-        <span>© 2026 Comcast. All rights reserved.</span>
+        <span>© 2026 Thetrovtech. All rights reserved.</span>
       </div>
 
       <Link to='' className="bg-neutral-900 flex w-full justify-center py-4 gap-2 text-xs text-white hover:bg-black transition">

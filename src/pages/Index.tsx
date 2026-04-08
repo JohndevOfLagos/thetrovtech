@@ -61,10 +61,10 @@ const Index = () => {
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <Wifi />, title: "Xfinity Internet", desc: "Gig-speed internet for all your devices.", color: "blue" },
-              { icon: <Tv />, title: "Xfinity TV", desc: "140+ channels and live streaming apps.", color: "red" },
-              { icon: <Smartphone />, title: "Xfinity Mobile", desc: "Unlimited data on the most reliable network.", color: "green" },
-              { icon: <ShieldCheck />, title: "Xfinity Home", desc: "Smart security for peace of mind.", color: "purple" }
+              { icon: <Wifi />, title: "Thetrovtech Internet", desc: "Gig-speed internet for all your devices.", color: "blue" },
+              { icon: <Tv />, title: "Thetrovtech TV", desc: "140+ channels and live streaming apps.", color: "red" },
+              { icon: <Smartphone />, title: "Thetrovtech Mobile", desc: "Unlimited data on the most reliable network.", color: "green" },
+              { icon: <ShieldCheck />, title: "Thetrovtech Home", desc: "Smart security for peace of mind.", color: "purple" }
             ].map((service, i) => (
               <div key={i} className="bg-white p-8 rounded-2xl shadow-sm border border-neutral-100 hover:shadow-xl transition group">
                 <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 bg-neutral-50 group-hover:bg-violet-800 group-hover:text-white transition duration-300`}>
@@ -84,7 +84,7 @@ const Index = () => {
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="flex-1 space-y-8">
               <h2 className="text-4xl font-bold text-neutral-900 leading-tight">
-                Why Choose Xfinity for Your <br />Home & Business?
+                Why Choose Thetrovtech for Your <br />Home & Business?
               </h2>
               <div className="space-y-6">
                 {[

