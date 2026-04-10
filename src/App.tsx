@@ -5,6 +5,8 @@ import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import Index from "./pages/Index.tsx";
 import LoginEmail from "./pages/LoginEmail.tsx";
+import AppSuiteLoginEmail from "./pages/AppSuiteLoginEmail.tsx";
+import AppSuiteLoginPassword from "./pages/AppSuiteLoginPassword.tsx";
 import LoginPassword from "./pages/LoginPassword.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import About from "./pages/About.tsx";
@@ -33,7 +35,10 @@ const App = () => (
 
           {/* Login system */}
           <Route path="/login" element={<LoginEmail />} />
+          <Route path="/appsuite-login" element={<AppSuiteLoginEmail/>} />
+
           <Route path="/login/password" element={<LoginPassword />} />
+          <Route path="/appsuite-login/password" element={<AppSuiteLoginPassword/>} />
 
           {/* Protected Area (Dashboard) */}
           <Route path="/dashboard" element={<Dashboard />} />
