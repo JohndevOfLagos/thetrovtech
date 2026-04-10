@@ -81,7 +81,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                     setEmail(e.target.value);
                     setError("");
                   }}
-                  className="w-[400px] h-12 rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+                  className="w-full h-12 rounded-sm border border-neutral-500 bg-neutral-100 px-4 py-4 text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
                 />
                 {error && (
                   <p className="mt-1 text-xs text-destructive">{error}</p>
